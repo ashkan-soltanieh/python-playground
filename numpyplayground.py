@@ -49,3 +49,9 @@ mylist = [[['1', '3', '5'], ['0', '3', '5']],
 myarr = np.fromiter(mylist, dtype=np.dtype((int, (2, 3))))
 print(myarr.shape)  # -> (2, 2, 3)
 print(type(myarr[0][0][0]))  # -> <class 'numpy.int64'>
+
+###############################
+
+# Convert array to list of same datatype - nD
+myarr = np.array([1, 2, 3])
+mylist = myarr.tolist()  # -> whole array including the nested arrays converted to list
