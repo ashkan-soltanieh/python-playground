@@ -55,3 +55,23 @@ print(type(myarr[0][0][0]))  # -> <class 'numpy.int64'>
 # Convert array to list of same datatype - nD
 myarr = np.array([1, 2, 3])
 mylist = myarr.tolist()  # -> whole array including the nested arrays converted to list
+
+###############################
+
+# Convert numbers array to joined strings - 1D
+myarr = np.array([1, 2, 3])
+mystr = "".join(map(str, myarr))
+print(mystr)  # -> "123"
+
+mystr = "".join(np.char.mod("%s", myarr))
+print(mystr)  # -> "123"
+
+# Convert numbers array to joined strings - 2D
+myarr = np.array([[1, 2], [3, 4]])
+mystr = ["".join(map(str, row)) for row in myarr]
+print(mystr)  # -> ["12", "34"]
+
+mystr = ["".join(row) for row in np.char.mod("%s", myarr)]
+print(mystr)  # -> ["12", "34"]
+
+###############################
