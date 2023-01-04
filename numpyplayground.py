@@ -1,5 +1,6 @@
 from itertools import permutations
 import numpy as np
+from toolz.functoolz import curry, compose_left
 
 # Creating NumPy Array from a list of numbers - 1D
 mylist = [1, 2, 3]
@@ -73,5 +74,26 @@ print(mystr)  # -> ["12", "34"]
 
 mystr = ["".join(row) for row in np.char.mod("%s", myarr)]
 print(mystr)  # -> ["12", "34"]
+
+###############################
+
+# Fix heterogenity problem in list coversions to arrays
+# Using compose/map
+mylist = [[1, 2], [1, 2, 3], [1]]
+map_with_len = curry(map, len)
+max_len = compose_left(map_with_len, max)(mylist)
+@curry
+def fill_with_nan(list_obj, max_len):
+	return list_obj + [9999] * (max_len - len(list_obj))	
+fill_with_nan_for_specified_max_len = fill_with_nan(max_len = max_len)
+nan_filller = compose_left(fill_with_nan_for_specified_max_len, curry(np.array, dtype=int))
+arr = np.fromiter(map(nan_filller, mylist), dtype=np.dtype((int, 3)))
+print(arr)
+
+# Using list comprehension
+max_len = max(map(len, mylist))
+arr = np.array([[*list_obj + [9999] * (max_len - len(list_obj))] for list_obj in mylist])
+
+print(arr)
 
 ###############################
