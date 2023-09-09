@@ -1,6 +1,6 @@
-##########################
-### Use basics package ###
-##########################
+#################################
+### Use basics.classes module ###
+#################################
 from designpatterns.basics.classes import User
 
 print(User.default_employer)  # output: abc
@@ -22,4 +22,4 @@ print(user2.default_employer)  # output: enb
 print(user1.get_default_employer())  # output: enb
 print(user2.get_default_employer())  # output: enb
 
-user3 = User()  # Raises TypeError because of missing required argument for constructor
+# user3 = User()  # Raises TypeError because of missing required argument for constructor
