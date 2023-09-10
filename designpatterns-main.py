@@ -23,14 +23,13 @@ print(user1.get_default_employer())  # output: enb
 print(user2.get_default_employer())  # output: enb
 
 # user3 = User()  # Raises TypeError because of missing required argument for constructor
-
+####################################
+### Use basics.interfaces module ###
+####################################
 from designpatterns.basics.interfaces.taxcalculator2021 import (
     TaxCalculator2021ABC, TaxCalculator2021Protocol)
 from designpatterns.basics.interfaces.taxcalculator2022 import (
     TaxCalculator2022ABC, TaxCalculator2022Protocol)
-####################################
-### Use basics.interfaces module ###
-####################################
 from designpatterns.basics.interfaces.taxfunctions import (
     calculate_tax_abc, calculate_tax_protocol)
 
@@ -43,3 +42,10 @@ tax2021_abc = TaxCalculator2021ABC("tax_data")
 tax2022_abc = TaxCalculator2022ABC("tax_data")
 print(calculate_tax_abc(tax2021_abc))
 print(calculate_tax_abc(tax2022_abc))
+#####################################
+### Use basics.abstraction module ###
+#####################################
+from designpatterns.basics.abstraction.mailservice import MailService
+
+mail_service = MailService("some_message")
+mail_service.send_email()
